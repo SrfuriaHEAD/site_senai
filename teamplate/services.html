@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Teamplate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/static/25hr3f.webp');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            background-color: #da0000; 
+            height: 100vh;
+        }
+        header {
+            background-color: rgba(53, 66, 74, 0.2);
+            color: #ffffff;
+            padding: 10px 0; /* Aumentei um pouco para não sufocar o texto */
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px; /* Mais espaço entre os links */
+        }
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        /* Estilo do Rodapé para não conflitar com o P do texto */
+        footer p {
+            color: white !important;
+            font-size: 14px !important;
+            margin: 0;
+        }
+        footer p::first-letter {
+            color: white !important;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95); /* Um pouco mais opaco para ler melhor */
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 100px; /* Espaço extra para não sumir atrás do footer */
+        }
+
+        h2 {
+            color: #333;
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #190be2; /* Linha decorativa */
+            padding-bottom: 10px;
+        }
+
+        p {
+            color: #444;
+            font-family: 'Georgia', serif;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        p::first-letter {
+            font-weight: bold;
+            color: #190be2;
+        }
+
+        /* Estilo para a lista de serviços */
+        .services-list {
+            list-style: none;
+            padding: 0;
+        }
+        .services-list li {
+            background: #f4f4f4;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-left: 5px solid #190be2;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Our Services</h1>
+        <nav>
+            <ul>
+                <li><a href="?url=/index">Home</a></li>
+                <li><a href="?url=about">About</a></li>
+                <li><a href="?url=services">Services</a></li>
+                <li><a href="?url=contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2 style="text-align: center;">What We Offer</h2>
+        <p>We provide high-quality web development solutions focusing on PHP technologies to help you build robust and scalable applications.</p>
+        
+        <ul class="services-list">
+            <li><strong>Custom Web Development:</strong> Building tailored websites from scratch using PHP and modern frameworks.</li>
+            <li><strong>Database Integration:</strong> Connecting your applications with MySQL, PostgreSQL, or other database systems.</li>
+            <li><strong>API Development:</strong> Creating powerful RESTful APIs to power your mobile apps or frontend frameworks.</li>
+            <li><strong>Server Management:</strong> Helping you set up and maintain XAMPP, Apache, or Linux environments.</li>
+        </ul>
+
+        <p>Our expertise ensures that your project is not only functional but also optimized for performance and security in the modern web landscape.</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Teamplate. All rights reserved.</p>
+    </footer>
+</body>
+</html>
