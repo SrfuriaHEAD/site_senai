@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 $mensagem_sucesso = "";
 $mensagem_erro = "";
-$log = "log.txt";
+$log = __DIR__ . "/db/log.txt";
 $bd = __DIR__ . "/db/login.db";  
 $op = fopen($log, "a");
 $name = "";
@@ -160,6 +160,28 @@ switch ($url) {
         if ($op) fwrite($op, "Visita à página 'Login': " . date('Y-m-d H:i:s', strtotime('-4 hours')) . "\n");
         break;
     
+    case 'logout':
+        session_destroy();
+        header("Location: main.php");
+        exit();
+        break;
+        
+    case 'admin':
+        if (!$usuario_logado || $nome_usuario !== 'admin') {
+            include __DIR__ . '/teamplate/404.html';
+            if ($op) fwrite($op, "Tentativa de acesso à página 'Admin' sem permissão: " . date('Y-m-d H:i:s', strtotime('-4 hours')) . "\n");
+        } else {
+            ob_start();
+            include __DIR__ . '/teamplate/admin.html';
+            $html = ob_get_clean();
+            
+            $nav_user = '<li style="float: right;"><span style="color: #fff; margin-right: 15px;">Olá, ' . htmlspecialchars($nome_usuario) . '!</span><a href="main.php?logout=1">Sair</a></li>';
+            $html = str_replace('</ul>', $nav_user . '</ul>', $html);
+            
+            echo $html;
+        }
+        break;
+        
     default:
         include __DIR__ . '/teamplate/404.html';
         if ($op) fwrite($op, "Visita à página desconhecida: " . date('Y-m-d H:i:s', strtotime('-4 hours')) . "\n");
