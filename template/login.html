@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teamplate</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/static/25hr3f.webp');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            background-color: #da0000;
+            height: 100vh;
+        }
+        header {
+            background-color: rgba(53, 66, 75, 0.2);
+            color: #ffffff;
+            padding: 1px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #1a2563;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }   
+        button.login {
+            background-color: #e70101;
+        }
+        button.login:hover {
+            background-color: #990202;
+        }
+        button:hover {
+            background-color: #071653;
+        }
+        input[type="text"], input[type="password"] {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 200px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Teamplate</h1>
+        <nav>
+            <ul>
+                <li><a href="main.php?url=/">Home</a></li>
+                <li><a href="main.php?url=about">About</a></li>
+                <li><a href="main.php?url=services">Services</a></li>
+                <li><a href="main.php?url=contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <form action="main.php?url=login" method="post">
+        <label for="nome"></label>
+        <input type="text" name="nome" value="{{nome}}" placeholder="Digite seu nome">
+        <label for="senha"></label>
+        <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+        <button class="login" type="submit">logar</button>
+    </form>
+    <footer>
+        <p>&copy; 2026 Teamplate. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -56,7 +56,14 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }   
+        button.login {
+            background-color: #e70101;
         }
+        button.login:hover {
+            background-color: #990202;
+        }
+
         button:hover {
             background-color: #071653;
         }
@@ -83,12 +90,13 @@
             </ul>
         </nav>
     </header>
-    <form action="main.php?url=login" method="post">
+    <form action="main.php?url=cadastrar" method="post">
         <label for="nome"></label>
         <input type="text" name="nome" value="{{nome}}" placeholder="Digite seu nome">
         <label for="senha"></label>
         <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
-        <button type="submit">Login</button>
+        <button type="submit">cadastrar</button> 
+        <button class="login" type="button" onclick="window.location.href='main.php?url=login'">já tenho conta</button>
     </form>
     <footer>
         <p>&copy; 2026 Teamplate. All rights reserved.</p>

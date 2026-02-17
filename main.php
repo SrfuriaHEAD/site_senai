@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 $mensagem_sucesso = "";
 $mensagem_erro = "";
-$log = __DIR__ . "/db/log.txt";
+$adm = __DIR__ . "/db/admin.db";
+$log = __DIR__ . "/db/log.txt"; 
 $bd = __DIR__ . "/db/login.db";  
 $op = fopen($log, "a");
 $name = "";
@@ -40,10 +40,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome']) && isset($_POS
         if (file_exists($bd)) {
             $conteudoAtual = file_get_contents($bd);
         }
+        if (file_exists($adm)) {
+            $conteudoAtual .= "\n" . file_get_contents($adm);
+        }
         
-        $nomeParaBuscar = "Nome: " . $name . " ";
+        $nomeParaBuscar = "Nome: " . $name;
         if ($conteudoAtual !== "" && str_contains($conteudoAtual, $nomeParaBuscar)) {
-            $mensagem_erro = "Erro: Esse nome já está cadastrado!";
+            $match = false;
+            $isAdmin = false;
+            foreach (explode("\n", $conteudoAtual) as $line) {
+                if (str_contains($line, "Nome: $name") && str_contains($line, "Senha: $pass")) {
+                    $match = true;
+                    break;
+                }
+            }
+            if ($match && file_exists($adm)) {
+                $adminContent = file_get_contents($adm);
+                if (str_contains($adminContent, "Nome: $name") && str_contains($adminContent, "Senha: $pass")) {
+                    $isAdmin = true;
+                }
+            }
+
+            if ($match) {
+                $_SESSION['usuario_nome'] = $name;
+                $_SESSION['usuario_logado'] = true;
+                if ($isAdmin) {
+                    $_SESSION['usuario_admin'] = true;
+                }
+                
+                $mensagem_sucesso = "Login bem-sucedido!";
+            } else {
+                $mensagem_erro = "Senha incorreta para o nome fornecido.";
+            }
         } else {
             $data = date('Y-m-d H:i:s', strtotime('-4 hours'));
             $linha = "Novo cadastro: $data | Nome: $name | Senha: $pass\n";
@@ -81,12 +109,12 @@ switch ($url) {
     case '/':
     case '/index':
         ob_start();
-        include __DIR__ . '/teamplate/index.html';
+        include __DIR__ . '/template/index.html';
         $html = ob_get_clean();
         
         if ($usuario_logado) {
             $nav_user = '<li style="float: right;"><span style="color: #fff; margin-right: 15px;">Olá, ' . htmlspecialchars($nome_usuario) . '!</span><a href="main.php?logout=1">Sair</a></li>';
-            $html = str_replace('</ul>', $nav_user . '</ul>', $html);
+            $html = preg_replace('/<\/ul>/', $nav_user . '</ul>', $html, 1);
         }
         
         echo $html;
@@ -95,12 +123,12 @@ switch ($url) {
     
     case 'about':
         ob_start();
-        include __DIR__ . '/teamplate/about.html';
+        include __DIR__ . '/template/about.html';
         $html = ob_get_clean();
         
         if ($usuario_logado) {
             $nav_user = '<li style="float: right;"><span style="color: #fff; margin-right: 15px;">Olá, ' . htmlspecialchars($nome_usuario) . '!</span><a href="main.php?logout=1">Sair</a></li>';
-            $html = str_replace('</ul>', $nav_user . '</ul>', $html);
+            $html = preg_replace('/<\/ul>/', $nav_user . '</ul>', $html, 1);
         }
         
         echo $html;
@@ -109,12 +137,12 @@ switch ($url) {
     
     case 'services':
         ob_start();
-        include __DIR__ . '/teamplate/services.html';
+        include __DIR__ . '/template/services.html';
         $html = ob_get_clean();
         
         if ($usuario_logado) {
             $nav_user = '<li style="float: right;"><span style="color: #fff; margin-right: 15px;">Olá, ' . htmlspecialchars($nome_usuario) . '!</span><a href="main.php?logout=1">Sair</a></li>';
-            $html = str_replace('</ul>', $nav_user . '</ul>', $html);
+            $html = preg_replace('/<\/ul>/', $nav_user . '</ul>', $html, 1);
         }
         
         echo $html;
@@ -128,12 +156,12 @@ switch ($url) {
         }
         
         ob_start();
-        include __DIR__ . '/teamplate/contact.html';
+        include __DIR__ . '/template/contact.html';
         $html = ob_get_clean();
         
         if ($usuario_logado) {
             $nav_user = '<li style="float: right;"><span style="color: #fff; margin-right: 15px;">Olá, ' . htmlspecialchars($nome_usuario) . '!</span><a href="main.php?logout=1">Sair</a></li>';
-            $html = str_replace('</ul>', $nav_user . '</ul>', $html);
+            $html = preg_replace('/<\/ul>/', $nav_user . '</ul>', $html, 1);
         }
         
         echo $html;
@@ -148,17 +176,34 @@ switch ($url) {
             echo "<script>alert('" . addslashes($mensagem_sucesso) . "');</script>";
         }
         
-        $login_html = file_get_contents(__DIR__ . '/teamplate/login.html');
+        $login_html = file_get_contents(__DIR__ . '/template/login.html');
         $login_html = str_replace("{{nome}}", htmlspecialchars($name), $login_html);
         
         if ($usuario_logado) {
             $nav_user = '<li style="float: right;"><span style="color: #fff; margin-right: 15px;">Olá, ' . htmlspecialchars($nome_usuario) . '!</span><a href="main.php?logout=1">Sair</a></li>';
-            $login_html = str_replace('</ul>', $nav_user . '</ul>', $login_html);
+            $login_html = preg_replace('/<\/ul>/', $nav_user . '</ul>', $login_html, 1);
         }
         
         echo $login_html;
         if ($op) fwrite($op, "Visita à página 'Login': " . date('Y-m-d H:i:s', strtotime('-4 hours')) . "\n");
         break;
+
+        case 'cadastrar':
+            if ($mensagem_erro !== "") {
+                echo "<script>alert('" . addslashes($mensagem_erro) . "');</script>";
+            }
+            if ($mensagem_sucesso !== "") {
+                echo "<script>alert('" . addslashes($mensagem_sucesso) . "');</script>";
+            }
+            $cadastrar_html = file_get_contents(__DIR__ . '/template/cadastrar.html');
+            $cadastrar_html = str_replace("{{nome}}", htmlspecialchars($name), $cadastrar_html);
+            if ($usuario_logado) {
+                $nav_user = '<li style="float: right;"><span style="color: #fff; margin-right: 15px;">Olá, ' . htmlspecialchars($nome_usuario) . '!</span><a href="main.php?logout=1">Sair</a></li>';
+                $cadastrar_html = preg_replace('/<\/ul>/', $nav_user . '</ul>', $cadastrar_html, 1);
+            }
+            echo $cadastrar_html;
+            if ($op) fwrite($op, "Visita à página 'Cadastrar': " . date('Y-m-d H:i:s', strtotime('-4 hours')) . "\n");
+            break;
     
     case 'logout':
         session_destroy();
@@ -167,23 +212,33 @@ switch ($url) {
         break;
         
     case 'admin':
-        if (!$usuario_logado || $nome_usuario !== 'admin') {
-            include __DIR__ . '/teamplate/404.html';
-            if ($op) fwrite($op, "Tentativa de acesso à página 'Admin' sem permissão: " . date('Y-m-d H:i:s', strtotime('-4 hours')) . "\n");
+        $isAdminPage = false;
+        if ($usuario_logado) {
+            if (file_exists($adm)) {
+                $adminContent = file_get_contents($adm);
+                if (str_contains($adminContent, "Nome: $nome_usuario")) {
+                    $isAdminPage = true;
+                }
+            }
+        }
+        
+        if (!$isAdminPage) {
+            include __DIR__ . '/template/404.html';
+            if ($op) fwrite($op, "Tentativa de acesso à página 'Admin' - usuário: " . (!empty($nome_usuario) ? $nome_usuario : "não logado") . " - " . date('Y-m-d H:i:s', strtotime('-4 hours')) . "\n");
         } else {
             ob_start();
-            include __DIR__ . '/teamplate/admin.html';
+            include __DIR__ . '/template/admin.html';
             $html = ob_get_clean();
             
             $nav_user = '<li style="float: right;"><span style="color: #fff; margin-right: 15px;">Olá, ' . htmlspecialchars($nome_usuario) . '!</span><a href="main.php?logout=1">Sair</a></li>';
-            $html = str_replace('</ul>', $nav_user . '</ul>', $html);
+            $html = preg_replace('/<\/ul>/', $nav_user . '</ul>', $html, 1);
             
             echo $html;
         }
         break;
         
     default:
-        include __DIR__ . '/teamplate/404.html';
+        include __DIR__ . '/template/404.html';
         if ($op) fwrite($op, "Visita à página desconhecida: " . date('Y-m-d H:i:s', strtotime('-4 hours')) . "\n");
         break;
 }

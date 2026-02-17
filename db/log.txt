@@ -596,3 +596,100 @@ Nova visita: 2026-02-13 17:14:15
 Nova visita: 2026-02-13 19:33:59
 Visita à página 'About': 2026-02-13 19:34:01
 Nova visita: 2026-02-13 19:34:14
+Nova visita: 2026-02-16 18:02:28
+Visita à página 'Login': 2026-02-16 18:02:30
+Visita à página 'Login': 2026-02-16 18:02:54
+Visita à página 'Login': 2026-02-16 18:06:58
+Visita à página 'Login': 2026-02-16 18:07:28
+Visita à página 'Login': 2026-02-16 18:45:20
+Visita à página 'Login': 2026-02-16 18:46:47
+Visita à página 'Login': 2026-02-16 18:48:35
+Nova visita: 2026-02-17 20:02:08
+Nova visita: 2026-02-17 20:03:58
+Nova visita: 2026-02-17 20:04:17
+Nova visita: 2026-02-17 20:04:18
+Nova visita: 2026-02-17 20:04:28
+Nova visita: 2026-02-17 20:04:28
+Nova visita: 2026-02-17 20:04:29
+Nova visita: 2026-02-17 20:04:44
+Nova visita: 2026-02-17 20:05:09
+Visita à página 'About': 2026-02-17 20:05:11
+Visita à página 'About': 2026-02-17 20:05:11
+Visita à página 'Services': 2026-02-17 20:05:13
+Nova visita: 2026-02-17 20:05:14
+Visita à página 'Login': 2026-02-17 20:05:15
+Visita à página 'Login': 2026-02-17 20:05:42
+Visita à página desconhecida: 2026-02-17 20:05:54
+Visita à página 'Cadastrar': 2026-02-17 20:06:53
+Visita à página 'Cadastrar': 2026-02-17 20:06:59
+Visita à página 'Cadastrar': 2026-02-17 20:07:00
+Nova visita: 2026-02-17 20:07:01
+Nova visita: 2026-02-17 20:07:34
+Visita à página 'Login': 2026-02-17 20:07:36
+Nova visita: 2026-02-17 20:08:39
+Visita à página 'Cadastrar': 2026-02-17 20:08:40
+Visita à página 'Login': 2026-02-17 20:08:45
+Nova visita: 2026-02-17 20:08:47
+Visita à página 'Cadastrar': 2026-02-17 20:08:48
+Visita à página 'Cadastrar': 2026-02-17 20:09:18
+Visita à página 'Cadastrar': 2026-02-17 20:10:55
+Visita à página 'Cadastrar': 2026-02-17 20:12:01
+Visita à página 'Cadastrar': 2026-02-17 20:12:01
+Visita à página 'Cadastrar': 2026-02-17 20:13:10
+Visita à página 'Cadastrar': 2026-02-17 20:14:04
+Visita à página 'Login': 2026-02-17 20:14:07
+Visita à página 'Login': 2026-02-17 20:14:38
+Visita à página 'Login': 2026-02-17 20:14:41
+Visita à página 'Login': 2026-02-17 20:14:46
+Nova visita: 2026-02-17 20:14:47
+Visita à página 'Cadastrar': 2026-02-17 20:14:49
+Visita à página 'Login': 2026-02-17 20:14:51
+Visita à página 'Cadastrar': 2026-02-17 20:16:18
+Visita à página 'Cadastrar': 2026-02-17 20:16:19
+Visita à página 'Login': 2026-02-17 20:16:21
+Visita à página 'Login': 2026-02-17 20:16:22
+Nova visita: 2026-02-17 20:16:26
+Visita à página 'Cadastrar': 2026-02-17 20:16:33
+Tentativa de acesso à página 'Admin' sem permissão: 2026-02-17 20:28:18
+Nova visita: 2026-02-17 20:31:42
+Visita à página 'Cadastrar': 2026-02-17 20:31:43
+Visita à página 'Login': 2026-02-17 20:31:44
+Visita à página 'Login': 2026-02-17 20:31:50
+Visita à página 'Login': 2026-02-17 20:32:11
+Visita à página 'Login': 2026-02-17 20:32:15
+Visita à página 'Login': 2026-02-17 20:32:18
+Visita à página 'Login': 2026-02-17 20:32:37
+Visita à página 'Login': 2026-02-17 20:33:54
+Tentativa de acesso à página 'Admin' sem permissão: 2026-02-17 20:34:04
+Nova visita: 2026-02-17 20:34:21
+Visita à página 'Services': 2026-02-17 20:34:25
+Nova visita: 2026-02-17 20:34:29
+Visita à página 'Cadastrar': 2026-02-17 20:34:31
+Visita à página 'Login': 2026-02-17 20:34:33
+Visita à página 'Login': 2026-02-17 20:34:38
+Visita à página 'Login': 2026-02-17 20:34:42
+Visita à página 'Login': 2026-02-17 20:34:45
+Nova visita: 2026-02-17 20:34:51
+Visita à página 'Contact': 2026-02-17 20:34:54
+Visita à página 'About': 2026-02-17 20:34:56
+Visita à página 'Services': 2026-02-17 20:34:57
+Visita à página 'Services': 2026-02-17 20:38:06
+Visita à página 'About': 2026-02-17 20:38:25
+Visita à página 'Contact': 2026-02-17 20:38:27
+Nova visita: 2026-02-17 20:38:30
+Tentativa de acesso à página 'Admin' sem permissão: 2026-02-17 20:44:28
+Nova visita: 2026-02-17 20:45:08
+Visita à página 'About': 2026-02-17 20:45:10
+Visita à página 'About': 2026-02-17 20:45:31
+Nova visita: 2026-02-17 20:45:50
+Visita à página 'Cadastrar': 2026-02-17 20:45:51
+Visita à página 'Cadastrar': 2026-02-17 20:45:57
+Visita à página 'Cadastrar': 2026-02-17 20:48:25
+Nova visita: 2026-02-17 20:48:26
+Nova visita: 2026-02-17 20:48:27
+Visita à página 'Cadastrar': 2026-02-17 20:48:28
+Visita à página 'Login': 2026-02-17 20:48:29
+Visita à página 'Login': 2026-02-17 20:48:34
+Visita à página 'Login': 2026-02-17 20:48:46
+Visita à página 'Login': 2026-02-17 20:48:52
+Visita à página 'Login': 2026-02-17 20:48:56
