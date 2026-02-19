@@ -1,105 +1,394 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teamplate</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Criar Conta - Teamplate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@600;800&family=Crimson+Pro&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-image: url('/static/25hr3f.webp');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            background-color: #da0000;
-            height: 100vh;
-        }
-        header {
-            background-color: rgba(53, 66, 75, 0.2);
-            color: #ffffff;
-            padding: 1px 0;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            color: #ffffff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-        button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #1a2563;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }   
-        button.login {
-            background-color: #e70101;
-        }
-        button.login:hover {
-            background-color: #990202;
+            box-sizing: border-box;
         }
 
-        button:hover {
-            background-color: #071653;
+        :root {
+            --primary: #1a2563;
+            --accent: #da0000;
+            --success: #00c896;
+            --bg-dark: #0a0e1a;
         }
-        input[type="text"], input[type="password"] {
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a0a0a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efeito de fundo */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(218, 0, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(26, 37, 99, 0.2) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Container */
+        .register-container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 30px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logo */
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo h1 {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Formulário */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        label {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #333;
+            margin-bottom: 0.5rem;
             display: block;
-            margin: 10px auto;
-            padding: 10px;
-            width: 200px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(26, 37, 99, 0.1);
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        /* Indicador de força da senha */
+        .password-strength {
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .strength-weak { width: 33%; background: var(--accent); }
+        .strength-medium { width: 66%; background: #ffa500; }
+        .strength-strong { width: 100%; background: var(--success); }
+
+        .strength-text {
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            color: #666;
+        }
+
+        /* Botões */
+        .btn-register {
+            background: linear-gradient(135deg, var(--success) 0%, #00a87a 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 200, 150, 0.3);
+            margin-top: 1rem;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 200, 150, 0.4);
+        }
+
+        .btn-login {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 1rem;
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Divider */
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 1rem;
+            position: relative;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* Nav mini */
+        .nav-mini {
+            position: absolute;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1.5rem;
+            z-index: 10;
+        }
+
+        .nav-mini a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-mini a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsividade */
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .logo h1 {
+                font-size: 2rem;
+            }
+
+            .nav-mini {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Teamplate</h1>
-        <nav>
-            <ul>
-                <li><a href="main.php?url=/">Home</a></li>
-                <li><a href="main.php?url=about">About</a></li>
-                <li><a href="main.php?url=services">Services</a></li>
-                <li><a href="main.php?url=contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <form action="main.php?url=cadastrar" method="post">
-        <label for="nome"></label>
-        <input type="text" name="nome" value="{{nome}}" placeholder="Digite seu nome">
-        <label for="senha"></label>
-        <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
-        <button type="submit">cadastrar</button> 
-        <button class="login" type="button" onclick="window.location.href='main.php?url=login'">já tenho conta</button>
-    </form>
-    <footer>
-        <p>&copy; 2026 Teamplate. All rights reserved.</p>
-    </footer>
+    <nav class="nav-mini">
+        <a href="main.php?url=/">Home</a>
+        <a href="main.php?url=about">About</a>
+        <a href="main.php?url=contact">Contact</a>
+    </nav>
+
+    <div class="register-container">
+        <div class="logo">
+            <h1>Teamplate</h1>
+            <p>Crie sua conta</p>
+        </div>
+
+        <form action="main.php?url=cadastrar" method="post">
+            <div class="input-group">
+                <label for="nome">Nome de Usuário</label>
+                <input 
+                    type="text" 
+                    id="nome"
+                    name="nome" 
+                    value="{{nome}}" 
+                    placeholder="Escolha um nome único"
+                    required
+                    autocomplete="username"
+                    minlength="3"
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="senha">Senha</label>
+                <input 
+                    type="password" 
+                    id="senha" 
+                    name="senha" 
+                    placeholder="Crie uma senha forte"
+                    required
+                    autocomplete="new-password"
+                    minlength="6"
+                >
+                <div class="password-strength">
+                    <div class="password-strength-bar" id="strengthBar"></div>
+                </div>
+                <div class="strength-text" id="strengthText"></div>
+            </div>
+
+            <button type="submit" class="btn-register">Criar Conta</button>
+        </form>
+
+        <div class="divider">
+            <span>ou</span>
+        </div>
+
+        <button type="button" class="btn-login" onclick="window.location.href='main.php?url=login'">
+            Já tenho conta
+        </button>
+    </div>
+
+    <script>
+        // Indicador de força da senha
+        const senhaInput = document.getElementById('senha');
+        const strengthBar = document.getElementById('strengthBar');
+        const strengthText = document.getElementById('strengthText');
+
+        senhaInput.addEventListener('input', function() {
+            const senha = this.value;
+            let strength = 0;
+            
+            // Critérios de força
+            if (senha.length >= 6) strength++;
+            if (senha.length >= 8) strength++;
+            if (/[a-z]/.test(senha) && /[A-Z]/.test(senha)) strength++;
+            if (/\d/.test(senha)) strength++;
+            if (/[^a-zA-Z0-9]/.test(senha)) strength++;
+            
+            // Remove classes anteriores
+            strengthBar.className = 'password-strength-bar';
+            
+            // Aplica nova classe e texto
+            if (senha.length === 0) {
+                strengthText.textContent = '';
+            } else if (strength <= 2) {
+                strengthBar.classList.add('strength-weak');
+                strengthText.textContent = '⚠️ Senha fraca';
+                strengthText.style.color = '#da0000';
+            } else if (strength <= 4) {
+                strengthBar.classList.add('strength-medium');
+                strengthText.textContent = '🔸 Senha média';
+                strengthText.style.color = '#ffa500';
+            } else {
+                strengthBar.classList.add('strength-strong');
+                strengthText.textContent = '✅ Senha forte';
+                strengthText.style.color = '#00c896';
+            }
+        });
+
+        // Validação do formulário
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const nome = document.getElementById('nome').value;
+            const senha = document.getElementById('senha').value;
+            
+            if (nome.length < 3) {
+                e.preventDefault();
+                alert('O nome deve ter pelo menos 3 caracteres!');
+                return;
+            }
+            
+            if (senha.length < 6) {
+                e.preventDefault();
+                alert('A senha deve ter pelo menos 6 caracteres!');
+                return;
+            }
+        });
+    </script>
 </body>
 </html>

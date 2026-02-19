@@ -1,71 +1,350 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teamplate</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Teamplate - Início</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;600;800&family=Crimson+Pro:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-image: url('/static/25hr3f.webp');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain; /* Ajusta para caber na tela sem cortes */
-            background-color: #da0000;   /* Cor de fundo para preencher o espaço que sobrar (mude #000 para a cor que quiser) */
-            height: 100vh;
-        }
-        header {
-            background-color: rgba(53, 66, 75, 0.2);
-            color: #ffffff;
-            padding: 1px 0;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            color: #ffffff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-        button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #1a2563;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #071653;
+            box-sizing: border-box;
         }
 
+        :root {
+            --primary: #1a2563;
+            --accent: #da0000;
+            --bg: #0a0e1a;
+            --card-bg: rgba(255, 255, 255, 0.98);
+            --text-light: #ffffff;
+            --text-dark: #1a1a1a;
+            --shadow: 0 20px 60px rgba(218, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: linear-gradient(135deg, var(--bg) 0%, #1a0a0a 100%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Efeito de partículas no fundo */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(218, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(26, 37, 99, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header flutuante */
+        header {
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(218, 0, 0, 0.2);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        header h1 {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            text-align: center;
+            letter-spacing: -0.05em;
+            background: linear-gradient(135deg, var(--text-light) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.8rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: clamp(1rem, 3vw, 2rem);
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: clamp(2rem, 8vw, 5rem) 1rem;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h2 {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: clamp(2rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        /* Botão CTA principal */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent) 0%, #ff1a1a 100%);
+            color: var(--text-light);
+            padding: 1rem 2.5rem;
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 10px 30px rgba(218, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(218, 0, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 10px 50px rgba(218, 0, 0, 0.6);
+            }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(218, 0, 0, 0.6);
+        }
+
+        /* Cards de Apoio */
+        .pricing-section {
+            margin-top: 4rem;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .price-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(218, 0, 0, 0.4);
+        }
+
+        .price-card h3 {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-value {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 1rem 0;
+            line-height: 1;
+        }
+
+        .price-value span {
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .btn-pix {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, #2a3b8f 100%);
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+        }
+
+        .btn-pix:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(26, 37, 99, 0.4);
+        }
+
+        .btn-pix:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsividade */
+        @media (max-width: 640px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .price-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animação de entrada nos cards */
+        .price-card {
+            opacity: 0;
+            animation: cardEntry 0.6s ease-out forwards;
+        }
+
+        .price-card:nth-child(1) {
+            animation-delay: 0.8s;
+        }
+
+        .price-card:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        @keyframes cardEntry {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to Teamplate</h1>
+        <h1>Teamplate</h1>
         <nav>
             <ul>
                 <li><a href="main.php?url=about">About</a></li>
@@ -74,12 +353,45 @@
             </ul>
         </nav>
     </header>
-    </main>
-        <h2 style="text-align: center; color: #1a2563;">Home Page</h2>
-        <p style="text-align: center; font-family: 'Segoe UI'; font-size: 16px; color: #ffffff;">Welcome to our homepage! Explore our services and learn more about us.</p>
-        <button onclick="window.location.href='main.php?url=cadastrar'">faça login</button>
+
+    <div class="container">
+        <div class="hero">
+            <h2>Bem-vindo à<br>Nossa Plataforma</h2>
+            <p>Explore nossos serviços e descubra como podemos ajudar você a alcançar seus objetivos.</p>
+            <a href="main.php?url=cadastrar" class="cta-button">login</a>
+        </div>
+
+        <section class="pricing-section">
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Apoio Simples</h3>
+                    <div class="price-value">
+                        <span>R$</span> 5<span>,00</span>
+                    </div>
+                    <p style="color: #666; margin: 1rem 0;">Contribua com um valor simbólico</p>
+                    <form method="POST" action="main.php?url=pagar">
+                        <input type="hidden" name="valor" value="5">
+                        <button type="submit" class="btn-pix">🔒 Pagar com PIX</button>
+                    </form>
+                </div>
+
+                <div class="price-card">
+                    <h3>Super Apoio</h3>
+                    <div class="price-value">
+                        <span>R$</span> 50<span>,00</span>
+                    </div>
+                    <p style="color: #666; margin: 1rem 0;">Apoio premium para fazer a diferença</p>
+                    <form method="POST" action="main.php?url=pagar">
+                        <input type="hidden" name="valor" value="50">
+                        <button type="submit" class="btn-pix">🔒 Pagar com PIX</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <footer>
-        <p>&copy; 2026 Teamplate. All rights reserved.</p>
+        <p>&copy; 2026 Teamplate. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento Confirmado! - Teamplate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@600;800&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --success: #00c896;
+            --primary: #1a2563;
+            --bg-dark: #0a0e1a;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0a1a0a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fundo animado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 200, 150, 0.2), transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        /* Container */
+        .success-container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Checkmark animado */
+        .checkmark-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .checkmark-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--success) 0%, #00a87a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 40px rgba(0, 200, 150, 0.4);
+            animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .checkmark {
+            color: white;
+            font-size: 4rem;
+            animation: checkmarkPop 0.4s ease-out 0.6s both;
+        }
+
+        @keyframes checkmarkPop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Título */
+        h1 {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--success);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            animation: fadeIn 0.6s ease-out 0.8s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.6s ease-out 1s both;
+        }
+
+        /* Detalhes do pagamento */
+        .payment-details {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            animation: fadeIn 0.6s ease-out 1.2s both;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .detail-value {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .detail-value.highlight {
+            color: var(--success);
+            font-size: 1.3rem;
+        }
+
+        /* Botões */
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            animation: fadeIn 0.6s ease-out 1.4s both;
+        }
+
+        .btn {
+            padding: 1.2rem;
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, #2a3b8f 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 8px 20px rgba(26, 37, 99, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(26, 37, 99, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Mensagem adicional */
+        .thank-you-message {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffecb3 100%);
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            animation: fadeIn 0.6s ease-out 1.6s both;
+        }
+
+        .thank-you-message p {
+            color: #856404;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Responsividade */
+        @media (max-width: 480px) {
+            .success-container {
+                padding: 2.5rem 2rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .checkmark-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+
+            .checkmark-circle {
+                width: 100px;
+                height: 100px;
+            }
+
+            .checkmark {
+                font-size: 3rem;
+            }
+        }
+
+        /* Confete */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--success);
+            animation: confetti-fall 4s linear forwards;
+            z-index: 1000;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="checkmark-wrapper">
+            <div class="checkmark-circle">
+                <div class="checkmark">✓</div>
+            </div>
+        </div>
+
+        <h1>Pagamento Confirmado!</h1>
+        <p class="subtitle">Sua transação foi processada com sucesso</p>
+
+        <div class="payment-details">
+            <div class="detail-row">
+                <span class="detail-label">ID do Pagamento</span>
+                <span class="detail-value"><?= $payment_id ?? 'N/A' ?></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Valor Pago</span>
+                <span class="detail-value highlight">
+                    R$ <?= isset($valor) ? number_format($valor, 2, ',', '.') : '0,00' ?>
+                </span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Data</span>
+                <span class="detail-value"><?= date('d/m/Y H:i') ?></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Método</span>
+                <span class="detail-value">PIX</span>
+            </div>
+        </div>
+
+        <div class="thank-you-message">
+            <p>
+                <strong>🎉 Obrigado pelo seu apoio!</strong><br>
+                Seu pagamento foi confirmado e já está sendo processado. 
+                Você receberá um comprovante por email em breve.
+            </p>
+        </div>
+
+        <div class="actions">
+            <a href="main.php" class="btn btn-primary">
+                Voltar ao Início
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Cria confete ao carregar a página
+        window.addEventListener('load', () => {
+            criarConfete();
+        });
+
+        function criarConfete() {
+            const cores = ['#00c896', '#1a2563', '#da0000', '#ffa500', '#fff'];
+            const quantidade = 80;
+            
+            for (let i = 0; i < quantidade; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.background = cores[Math.floor(Math.random() * cores.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 20);
+            }
+        }
+
+        // Opcional: Guardar no localStorage que pagamento foi feito
+        if (typeof(Storage) !== "undefined") {
+            localStorage.setItem('ultimo_pagamento', JSON.stringify({
+                id: '<?= $payment_id ?? '' ?>',
+                valor: '<?= $valor ?? 0 ?>',
+                data: '<?= date("Y-m-d H:i:s") ?>'
+            }));
+        }
+    </script>
+</body>
+</html>
